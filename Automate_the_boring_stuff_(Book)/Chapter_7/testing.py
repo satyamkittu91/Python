@@ -1,5 +1,6 @@
 import random
 from without_re import retrivePhoneNumber
+from with_re import serachPhoneNumber
 # We'll find a phone number without a regualr expression
 
 def isPhoneNumber(text):
@@ -56,8 +57,15 @@ def create_super_long_string_with_phones(length, num_phones):
     return "".join(long_string_list)
 
 
-# Generate a long string:
-long_string = create_super_long_string_with_phones(1000000, 20000) #1 million characters, 2000 phone numbers.
+# running multiple tests
+for _ in range(10):
+    # Generate a long string:
+    long_string = create_super_long_string_with_phones(1000000, 20000) #1 million characters, 2000 phone numbers.
 
-# Print the string (you can copy and paste this into your test):
-retrivePhoneNumber(long_string, show_numbers=False)
+    # Print the string (you can copy and paste this into your test):
+
+    print("Without Regex")
+    retrivePhoneNumber(long_string, show_numbers=False)
+
+    print("With Regex")
+    serachPhoneNumber(long_string, show_numbers=False)
