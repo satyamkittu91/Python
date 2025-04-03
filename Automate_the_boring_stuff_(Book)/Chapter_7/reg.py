@@ -171,3 +171,30 @@ robocop.search('RoboCop is part man, part machine, all cop.').group()
 namesRegex = re.compile(r'Agent \w+')
 namesRegex.sub('CENSORED', 'Agent Alice gave the secret documents to Agent Bob.')
 # CENSORED gave the secret documents to CENSORED.
+
+# Use the matched text itself as the part of the substitution.
+# The sub() method takes a function as the second argument.
+# The function takes a match object as the argument and returns the string to be used as the replacement.
+agentNamesRegex = re.compile(r'Agent (\w)\w*')
+agentNamesRegex.sub(r'\1****', 'Agent Alice gave the secret documents to Agent Bob.')
+# A**** gave the secret documents to B****.
+
+
+# Verbose mode
+# The verbose mode allows you to write regexes that look nice and readable.
+# You can add comments and whitespace to the regex.
+phoneRegex = re.compile(r'''(
+    (\d{3}|\(d{3}\))? # area code
+    (\s|-|\.)? # separator
+    (\d{3}) # first three digits
+    (\s|-|\.) # separator
+    (\d{4}) # last four digits
+    (\s*(ext|x|ext.)\s*(\d{2,5}))? # extension
+    )''', re.VERBOSE)
+
+
+# Combining re.IGNORECASE, re.DOTALL, and re.VERBOSE
+# You can combine the flags by using the bitwise OR operator (|).
+# For example, re.IGNORECASE | re.DOTALL | re.VERBOSE will make the regex case insensitive, match newlines, and be verbose.
+
+someRegexValue = re.compile(r'some regex', re.IGNORECASE | re.DOTALL | re.VERBOSE)
